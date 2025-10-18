@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر [اسم متجرك] - وجهتك للتسوق</title>
+    <style>
+        /* كود CSS بسيط لجعل الأزرار تعمل كتجربة */
+        .cta-button, .product-card button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .product-card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px;
+            width: 30%; /* لتجربة العرض جنبًا إلى جنب */
+            text-align: center;
+        }
+        .product-grid {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>[اسم المتجر التجاري]</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#products">المنتجات</a></li>
+                <li><a href="#offers">العروض</a></li>
+                <li><a href="#about">من نحن</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <a href="#cart">🛒 سلة المشتريات (<span id="cart-count">0</span>)</a>
+            <a href="#login">تسجيل الدخول / إنشاء حساب</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" class="hero">
+            <h2>اكتشف أحدث المنتجات وأفضل الأسعار!</h2>
+            <p>الجودة العالية بين يديك مع خدمة توصيل سريعة وموثوقة.</p>
+            <a href="#products" class="cta-button">تسوّق الآن</a>
+        </section>
+
+        <section id="products" class="featured-products">
+            <h2>منتجاتنا المميزة</h2>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="صورة_المنتج_1.jpg" alt="اسم المنتج 1" style="max-width: 100px;">
+                    <h3>اسم المنتج الأول</h3>
+                    <p>وصف مختصر للمنتج. جودة فائقة وتصميم عصري.</p>
+                    <span class="price">150 ر.س</span>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+
+                <div class="product-card">
+                    <img src="صورة_المنتج_2.jpg" alt="اسم المنتج 2" style="max-width: 100px;">
+                    <h3>اسم المنتج الثاني</h3>
+                    <p>منتج ضروري لكل منزل. متوفر بألوان مختلفة.</p>
+                    <span class="price">85 ر.س</span>
+                    <button class="add-to-cart">أضف إلى السلة</button>
+                </div>
+                </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>ماذا يقول عملاؤنا؟</h2>
+            <blockquote dir="rtl">
+                "تجربة تسوق ممتازة، المنتجات وصلتني بسرعة وكانت مطابقة للوصف. شكراً لكم!"
+                <cite>- سارة م.</cite>
+            </blockquote>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <div>
+                <h4>روابط سريعة</h4>
+                <ul>
+                    <li><a href="#policy">سياسة الخصوصية</a></li>
+                    <li><a href="#shipping">سياسة الشحن والإرجاع</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>تواصل معنا</h4>
+                <p>البريد الإلكتروني: info@[متجرك].com</p>
+                <p>الهاتف: 00966xxxxxxxx</p>
+            </div>
+        </div>
+        <p class="copyright">© 2025 [اسم المتجر التجاري]. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // متغير عالمي لتخزين عدد العناصر في السلة
+        let cartItemCount = 0;
+
+        // دالة لتحديث عدد العناصر المعروض في شريط التنقل
+        function updateCartCount() {
+            const cartCountElement = document.getElementById('cart-count');
+            if (cartCountElement) {
+                cartCountElement.textContent = cartItemCount;
+            }
+        }
+
+        // دالة لإضافة عنصر إلى السلة
+        function addToCart(event) {
+            // زيادة عدد العناصر في السلة
+            cartItemCount++;
+
+            // تحديث عرض العدد في الصفحة
+            updateCartCount();
+
+            // رسالة تنبيه بسيطة للمستخدم
+            alert('تمت إضافة المنتج إلى السلة! العدد الحالي: ' + cartItemCount);
+
+            // يمكنك هنا إضافة المزيد من المنطق: إرسال بيانات المنتج إلى سلة فعلية، تحديث الأسعار، إلخ.
+        }
+
+        // البحث عن جميع أزرار "أضف إلى السلة"
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+        // إضافة مستمع حدث (Event Listener) لكل زر
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+
+        // التأكد من عرض العدد الأولي للسلة عند تحميل الصفحة
+        updateCartCount();
+    </script>
+</body>
+</html>
